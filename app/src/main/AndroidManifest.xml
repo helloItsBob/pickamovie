@@ -13,6 +13,8 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
+            <!-- TODO: figure out how to properly set up burger/up button, coz of different parent activity
+             android:parentActivityName=".MainActivity" -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
