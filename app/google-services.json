@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "2709667283",
+    "project_id": "pickamovie-22258",
+    "storage_bucket": "pickamovie-22258.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2709667283:android:4063e76465da7242088326",
+        "android_client_info": {
+          "package_name": "com.app.pickamovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2709667283-916lgsf8b0pqup44ldpoj18attbpqpo7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.pickamovie",
+            "certificate_hash": "9fa390c4fe29b4c0b75abe631c0e7cb68b1b04e3"
+          }
+        },
+        {
+          "client_id": "2709667283-onlc7ocirvc0anf4hmgi46otfm5amqt9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkgVihRvssgB0beYmXn5oIi0oUv0Vl97g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2709667283-onlc7ocirvc0anf4hmgi46otfm5amqt9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
