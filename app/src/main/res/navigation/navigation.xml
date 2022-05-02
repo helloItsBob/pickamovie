@@ -6,27 +6,27 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/home"
-        android:name="com.app.pickamovie.Home"
+        android:name="com.app.pickamovie.fragments.Home"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/search"
-        android:name="com.app.pickamovie.Search"
+        android:name="com.app.pickamovie.fragments.Search"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.app.pickamovie.Settings"
+        android:name="com.app.pickamovie.fragments.Settings"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/about"
-        android:name="com.app.pickamovie.About"
+        android:name="com.app.pickamovie.fragments.About"
         android:label="About"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.app.pickamovie.Profile"
+        android:name="com.app.pickamovie.fragments.Profile"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

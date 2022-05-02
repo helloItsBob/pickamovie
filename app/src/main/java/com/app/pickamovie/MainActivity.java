@@ -29,16 +29,15 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationDrawer;
     private Toolbar toolbar;
 
-    private MainActivityViewModel viewModel;
+    private MainActivityViewModel mainActivityViewModel;
 
     private TextView welcomeMessage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        viewModel.init();
+        mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        mainActivityViewModel.init();
         checkIfSignedIn();
         setContentView(R.layout.activity_main);
         initViews();
@@ -53,13 +52,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.my_toolbar);
     }
 
-    // BURGER AND BACK BUTTONS DON'T WORK BECAUSE OF MANIFEST
     private void setupNavigation() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.home).setOpenableLayout(drawerLayout).build();
@@ -69,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkIfSignedIn() {
-        viewModel.getCurrentUser().observe(this, user -> {
+        mainActivityViewModel.getCurrentUser().observe(this, user -> {
             if (user != null) {
                 String message = "Welcome " + user.getDisplayName() + "!";
                 welcomeMessage.setText(message);
@@ -84,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signOut(View v) {
-        viewModel.signOut();
+        mainActivityViewModel.signOut();
     }
 
     @Override
@@ -114,5 +109,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Search selected", Toast.LENGTH_SHORT).show();
 
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() // fixed burger/up button
+    {
+        return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 }
