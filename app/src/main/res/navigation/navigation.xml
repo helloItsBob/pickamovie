@@ -6,27 +6,32 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/home"
-        android:name="com.app.pickamovie.fragments.Home"
+        android:name="com.app.pickamovie.view.fragments.HomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/search"
-        android:name="com.app.pickamovie.fragments.Search"
+        android:name="com.app.pickamovie.view.fragments.SearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.app.pickamovie.fragments.Settings"
+        android:name="com.app.pickamovie.view.fragments.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/about"
-        android:name="com.app.pickamovie.fragments.About"
+        android:name="com.app.pickamovie.view.fragments.AboutFragment"
         android:label="About"
         tools:layout="@layout/fragment_about" />
     <fragment
-        android:id="@+id/profile"
-        android:name="com.app.pickamovie.fragments.Profile"
+        android:id="@+id/favorites"
+        android:name="com.app.pickamovie.view.fragments.FavoritesFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/movie"
+        android:name="com.app.pickamovie.view.fragments.MovieFragment"
+        android:label="Movie"
+        tools:layout="@layout/fragment_movie" />
 </navigation>

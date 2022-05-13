@@ -4,6 +4,42 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- welcome message / motivation -->
+    <string name="greeting_tryYourLuck">Try your luck!</string>
+
+    <!-- number spinner-->
+    <string-array name="numbers_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_app">Don\'t ruin your date night, use \'PickaMovie\'! Have you ever had a problem when you wanted to watch some kickass movie, but couldn’t find one and instead spent all your time and energy scrolling through an endless list you found online by typing something like - ‘Best movies of all time’? Well, I have - and it\'s no fun experience. Therefore, I present to you a movie picker app called ‘PickaMovie’, it will eliminate all your worries associated with the painstaking process of finding a movie and help you choose the movie you deserve! If you ever have trouble finding movies you want to see, just open the app, enter your preferred filtering criteria and baaam! - you got yourself a narrowed list with your preferences taken into account. This saves your time and ensures a smooth ride for a good evening!</string>
+    <string name="app_icon">App Icon</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="log_out">Log Out</string>
+    <string name="movie_title_placeholder">Movie Title</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="placeholder">Unfortunately, this movie doesn\'t have a description added yet. We are working on it!</string>
+    <string name="get_random_movies">Get random movies</string>
+    <string name="type_the_title_of_the_movie">Type the title of the movie…</string>
+    <string name="find">Find Movie</string>
+    <string name="welcome_to_pick_a_movie">Welcome to Pick-a-Movie!</string>
+    <string name="year">Year:</string>
+    <string name="rating">Rating</string>
+    <string name="save_to_favorites">Save to favorites</string>
+    <string name="delete_all">Delete All</string>
 </resources>

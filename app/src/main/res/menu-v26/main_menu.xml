@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/heart_white"
+        android:iconTint="@color/light_orange"
+        android:title="@string/favorites"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settings"
+        android:iconTint="@color/light_orange"
+        android:title="@string/settings" />
+    <item
+        android:id="@+id/about"
+        android:iconTint="@color/light_orange"
+        android:title="@string/about" />
+    <item
+        android:id="@+id/logout"
+        android:iconTint="@color/light_orange"
+        android:title="@string/log_out" />
+</menu>

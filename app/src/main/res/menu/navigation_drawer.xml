@@ -9,19 +9,19 @@
         <item
             android:id="@+id/search"
             android:icon="@drawable/ic_baseline_search_24"
-            android:title="Search" />
+            android:title="@string/search" />
     </group>
     <group
         android:id="@+id/account"
         android:checkableBehavior="all">
         <item
-            android:id="@+id/profile"
-            android:icon="@drawable/ic_baseline_self_improvement_24"
-            android:title="Profile" />
+            android:id="@+id/favorites"
+            android:icon="@drawable/heart"
+            android:title="@string/favorites" />
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_baseline_settings_24"
-            android:title="Settings" />
+            android:title="@string/settings" />
     </group>
     <group
         android:id="@+id/app"
@@ -29,7 +29,16 @@
 
         <item
             android:id="@+id/about"
-            android:icon="@drawable/ic_baseline_read_more_24"
-            android:title="About" />
+            android:icon="@drawable/ic_baseline_error_24"
+            android:title="@string/about" />
+    </group>
+    <group
+        android:id="@+id/signout"
+        android:checkableBehavior="all">
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="@string/log_out" />
     </group>
 </menu>
