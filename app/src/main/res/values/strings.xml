@@ -42,4 +42,6 @@
     <string name="rating">Rating</string>
     <string name="save_to_favorites">Save to favorites</string>
     <string name="delete_all">Delete All</string>
+    <string name="movie">Movie</string>
+    <string name="series">Series</string>
 </resources>

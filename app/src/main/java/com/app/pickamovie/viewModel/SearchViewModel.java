@@ -21,4 +21,16 @@ public class SearchViewModel extends ViewModel {
     public void searchForMovieByWords(String searchString) {
         repository.searchByWords(searchString);
     }
+
+    public void searchForMovieByWordsAndPage(String searchString, int page) {
+        repository.searchByWordsAndPage(searchString, page);
+    }
+
+    public void searchForMovieByWordsAndType(String searchString, String type) {
+        repository.searchByWordsAndType(searchString, type);
+    }
+
+    public void searchForMovieByWordsAndPageAndType(String searchString, String type, int page) {
+        repository.searchByWordsAndPageAndType(searchString, type, page);
+    }
 }

@@ -111,16 +111,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.favorites)
-            Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show();
-        else if (itemId == R.id.about)
-            Toast.makeText(this, "About selected", Toast.LENGTH_SHORT).show();
-        else if (itemId == R.id.settings)
-            Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT).show();
-        else if (itemId == R.id.search)
-            Toast.makeText(this, "Search selected", Toast.LENGTH_SHORT).show();
-        else if (itemId == R.id.logout) {
-            Toast.makeText(this, "Log Out selected", Toast.LENGTH_SHORT).show();
+        if (itemId == R.id.logout) {
+            Toast.makeText(this, "See you soon!", Toast.LENGTH_SHORT).show();
             signOut();
         }
 

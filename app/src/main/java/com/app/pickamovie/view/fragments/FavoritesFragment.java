@@ -78,6 +78,13 @@ public class FavoritesFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
 
+//        Button test = rootView.findViewById(R.id.testButton);
+//        test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                MovieFragment.updateButton.onUpdate(true);
+//            }
+//        });
         Button deleteAllButton = rootView.findViewById(R.id.deleteAllButton);
         ProgressBar progressBar = rootView.findViewById(R.id.progressBarFavorites);
         progressBar.setVisibility(View.INVISIBLE);
@@ -92,6 +99,7 @@ public class FavoritesFragment extends Fragment {
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         movieViewModel.getAllMovies().observe(getViewLifecycleOwner(), movies -> {
+            moviesList.clear();
             if (!movies.isEmpty()) {
                 moviesList.addAll(movies);
             } else {

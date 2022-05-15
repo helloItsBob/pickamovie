@@ -60,4 +60,79 @@ public class SearchRepo {
         });
     }
 
+    public void searchByWordsAndPage(String searchWord, int page) {
+        MovieAPI movieAPI = ServiceGenerator.getMovieAPI();
+        Call<SearchResponse> call = movieAPI.getMoviesBySearchAndPage(MovieAPI.KEY, searchWord, page);
+        call.enqueue(new Callback<SearchResponse>() {
+            @EverythingIsNonNull
+            @Override
+            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                Log.i("RESPONSE", response.code() + "");
+                Log.i("CALL", call.request().url() + "");
+                if (response.isSuccessful()) {
+                    searchedMovie.setValue(response.body().getSearchedMovies());
+                    Log.i("RESPONSE", response.body().search+ "");
+
+                }
+            }
+
+            @EverythingIsNonNull
+            @Override
+            public void onFailure(Call<SearchResponse> call, Throwable t) {
+                Log.i("RESPONSE", t.getMessage());
+                Log.i("RETROFIT", "Something went wrong :(");
+            }
+        });
+    }
+
+    public void searchByWordsAndType(String searchWord, String type) {
+        MovieAPI movieAPI = ServiceGenerator.getMovieAPI();
+        Call<SearchResponse> call = movieAPI.getMoviesBySearchAndType(MovieAPI.KEY, searchWord, type);
+        call.enqueue(new Callback<SearchResponse>() {
+            @EverythingIsNonNull
+            @Override
+            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                Log.i("RESPONSE", response.code() + "");
+                Log.i("CALL", call.request().url() + "");
+                if (response.isSuccessful()) {
+                    searchedMovie.setValue(response.body().getSearchedMovies());
+                    Log.i("RESPONSE", response.body().search+ "");
+
+                }
+            }
+
+            @EverythingIsNonNull
+            @Override
+            public void onFailure(Call<SearchResponse> call, Throwable t) {
+                Log.i("RESPONSE", t.getMessage());
+                Log.i("RETROFIT", "Something went wrong :(");
+            }
+        });
+    }
+
+    public void searchByWordsAndPageAndType(String searchWord, String type, int page) {
+        MovieAPI movieAPI = ServiceGenerator.getMovieAPI();
+        Call<SearchResponse> call = movieAPI.getMoviesBySearchAndPageAndType(MovieAPI.KEY, searchWord, type, page);
+        call.enqueue(new Callback<SearchResponse>() {
+            @EverythingIsNonNull
+            @Override
+            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                Log.i("RESPONSE", response.code() + "");
+                Log.i("CALL", call.request().url() + "");
+                if (response.isSuccessful()) {
+                    searchedMovie.setValue(response.body().getSearchedMovies());
+                    Log.i("RESPONSE", response.body().search+ "");
+
+                }
+            }
+
+            @EverythingIsNonNull
+            @Override
+            public void onFailure(Call<SearchResponse> call, Throwable t) {
+                Log.i("RESPONSE", t.getMessage());
+                Log.i("RETROFIT", "Something went wrong :(");
+            }
+        });
+    }
+
 }

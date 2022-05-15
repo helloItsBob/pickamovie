@@ -28,6 +28,7 @@ public class Movie implements Parcelable {
     private String plot;
     private String imdbRating;
 
+    private boolean isFavorite;
 //    private final String rated;
 //    private final String released;
 //    private final String runtime;
@@ -68,6 +69,7 @@ public class Movie implements Parcelable {
         this.type = type;
         this.plot = plot;
         this.imdbRating = imdbRating;
+        this.isFavorite = false;
 
 //        this.rated = rated;
 //        this.released = released;
@@ -159,8 +161,15 @@ public class Movie implements Parcelable {
         return imdbRating;
     }
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
 
-//    public String getRated() {
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    //    public String getRated() {
 //        return rated;
 //    }
 //

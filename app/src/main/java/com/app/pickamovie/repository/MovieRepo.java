@@ -65,7 +65,6 @@ public class MovieRepo {
         executorService.execute(movieDao::deleteAllMovies);
     }
 
-    // TODO check if it's a movie!!! -- Can't coz API doesn't work
     public void searchForMovieRandomId() {
         MovieAPI movieAPI = ServiceGenerator.getMovieAPI();
         Call<MovieResponse> call = movieAPI.getMoviesByRandomId(MovieAPI.KEY3, generateRandomId(), "full");
@@ -87,7 +86,6 @@ public class MovieRepo {
                 Log.i("RESPONSE", t.getMessage());
                 Log.i("RETROFIT", "Something went wrong :(");
                 Log.i("WHAT", call.request().toString());
-                //searchForMovieRandomId();
             }
         });
     }

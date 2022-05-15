@@ -24,6 +24,8 @@ import com.app.pickamovie.utils.MovieAdapter;
 import com.app.pickamovie.viewModel.MovieViewModel;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +36,8 @@ public class HomeFragment extends Fragment {
 
     private MovieViewModel movieViewModel;
     private int times;
+
+    private Set<Movie> set = new HashSet<>();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,7 +96,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 times = position + 1;
-                Toast.makeText(getContext(), adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -109,12 +112,12 @@ public class HomeFragment extends Fragment {
         movieList.hasFixedSize();
         movieList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
         ArrayList<Movie> movies = new ArrayList<>();
         MovieAdapter movieAdapter = new MovieAdapter(getActivity(), movies);
         movieList.setAdapter(movieAdapter);
 
         getButton.setOnClickListener(view -> {
+            set.clear();
             movies.clear();
             movieViewModel.searchForMovieByRandomId(times);
             progressBar.setVisibility(View.VISIBLE);
@@ -122,8 +125,10 @@ public class HomeFragment extends Fragment {
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         movieViewModel.getSearchedMovie().observe(getViewLifecycleOwner(), movie -> {
-            movies.add(movie);
-            if (movies.size() == times) {
+            set.add(movie);
+            movies.clear();
+            movies.addAll(set);
+            if (set.size() == times) {
                 progressBar.setVisibility(View.INVISIBLE);
                 movieAdapter.notifyDataSetChanged();
             }

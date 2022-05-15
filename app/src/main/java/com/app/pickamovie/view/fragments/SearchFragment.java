@@ -2,12 +2,16 @@ package com.app.pickamovie.view.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pickamovie.R;
 import com.app.pickamovie.model.Movie;
+import com.app.pickamovie.model.MovieType;
 import com.app.pickamovie.utils.MovieAdapter;
 import com.app.pickamovie.viewModel.SearchViewModel;
 
@@ -31,6 +36,8 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment {
 
     private SearchViewModel searchViewModel;
+    int pageCounter = 1; // default value
+    int totalPages = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,7 +79,7 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,8 +87,18 @@ public class SearchFragment extends Fragment {
         final View rootView =
                 inflater.inflate(R.layout.fragment_search, container, false);
 
-        final Button button = rootView.findViewById(R.id.buttonFind);
+        final Button findButton = rootView.findViewById(R.id.buttonFind);
         final EditText editText = rootView.findViewById(R.id.movieSearchText);
+        final ImageButton nextButton = rootView.findViewById(R.id.nextPageButton);
+        final ImageButton previousButton = rootView.findViewById(R.id.previousPageButton);
+        nextButton.setVisibility(View.INVISIBLE);
+        previousButton.setVisibility(View.INVISIBLE);
+
+        final TextView searchResults = rootView.findViewById(R.id.resultsFound);
+        final TextView pageNumber = rootView.findViewById(R.id.pageNumber);
+
+        final CheckBox checkBoxMovie = rootView.findViewById(R.id.checkBoxMovie);
+        final CheckBox checkBoxSeries = rootView.findViewById(R.id.checkBoxSeries);
 
         ProgressBar progressBar = rootView.findViewById(R.id.progressBarSearch);
         progressBar.setVisibility(View.INVISIBLE);
@@ -94,15 +111,90 @@ public class SearchFragment extends Fragment {
         MovieAdapter movieAdapter = new MovieAdapter(getActivity(), movies);
         movieListRecycler.setAdapter(movieAdapter);
 
-        button.setOnClickListener(view -> {
+        findButton.setOnClickListener(view -> {
             movies.clear();
-            searchViewModel.searchForMovieByWords(editText.getText().toString());
             progressBar.setVisibility(View.VISIBLE);
+            pageCounter = 1;
+
+            if ((!checkBoxMovie.isChecked() && !checkBoxSeries.isChecked()) ||
+                    checkBoxMovie.isChecked() && checkBoxSeries.isChecked()) {
+                searchViewModel.searchForMovieByWords(editText.getText().toString().trim());
+            } else if (checkBoxMovie.isChecked() && !checkBoxSeries.isChecked()) {
+                searchViewModel.searchForMovieByWordsAndType(editText.getText().toString().trim(), MovieType.MOVIE.getType());
+            } else if (checkBoxSeries.isChecked() && !checkBoxMovie.isChecked()) {
+                searchViewModel.searchForMovieByWordsAndType(editText.getText().toString().trim(), MovieType.SERIES.getType());
+            }
+        });
+
+        nextButton.setOnClickListener(view -> {
+            movies.clear();
+            pageCounter++;
+            progressBar.setVisibility(View.VISIBLE);
+
+            if ((!checkBoxMovie.isChecked() && !checkBoxSeries.isChecked()) ||
+                    checkBoxMovie.isChecked() && checkBoxSeries.isChecked()) {
+                searchViewModel.searchForMovieByWordsAndPage(editText.getText().toString().trim(), pageCounter);
+            } else if (checkBoxMovie.isChecked() && !checkBoxSeries.isChecked()) {
+                searchViewModel.searchForMovieByWordsAndPageAndType(editText.getText().toString().trim(), MovieType.MOVIE.getType(), pageCounter);
+            } else if (checkBoxSeries.isChecked() && !checkBoxMovie.isChecked()) {
+                searchViewModel.searchForMovieByWordsAndPageAndType(editText.getText().toString().trim(), MovieType.SERIES.getType(), pageCounter);
+            }
+        });
+
+        previousButton.setOnClickListener(view -> {
+            movies.clear();
+            pageCounter--;
+            searchViewModel.searchForMovieByWordsAndPage(editText.getText().toString().trim(), pageCounter);
+            progressBar.setVisibility(View.VISIBLE);
+
+            if ((!checkBoxMovie.isChecked() && !checkBoxSeries.isChecked()) ||
+                    checkBoxMovie.isChecked() && checkBoxSeries.isChecked()) {
+                searchViewModel.searchForMovieByWordsAndPage(editText.getText().toString().trim(), pageCounter);
+            } else if (checkBoxMovie.isChecked() && !checkBoxSeries.isChecked()) {
+                searchViewModel.searchForMovieByWordsAndPageAndType(editText.getText().toString().trim(), MovieType.MOVIE.getType(), pageCounter);
+            } else if (checkBoxSeries.isChecked() && !checkBoxMovie.isChecked()) {
+                searchViewModel.searchForMovieByWordsAndPageAndType(editText.getText().toString().trim(), MovieType.SERIES.getType(), pageCounter);
+            }
         });
 
         searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         searchViewModel.getMoviesBySearch().observe(getViewLifecycleOwner(), search -> {
-            movies.addAll(search.getSearchMovie());
+            try {
+                movies.clear();
+                movies.addAll(search.getSearchMovie());
+                Log.i("TOTAL MOVIES", search.getTotalResults());
+                searchResults.setText("You searched for - '" + editText.getText() + "': " + search.getTotalResults() + " results found");
+
+                double totalPagesDouble = Double.parseDouble(search.getTotalResults()) / 10;
+                if (totalPagesDouble % 10 != 0) {
+                    totalPages = (int) totalPagesDouble + 1;
+                }
+                else if (totalPagesDouble <= 10) {
+                    totalPages = 1;
+                }
+
+                Log.i("TOTAL PAGES", totalPages + "");
+                Log.i("PAGE COUNTER", pageCounter + "");
+                pageNumber.setText("<<Page: " + pageCounter + " out of " + totalPages + ">>");
+
+
+                if (totalPages > pageCounter) {
+                    nextButton.setVisibility(View.VISIBLE);
+                } else nextButton.setVisibility(View.INVISIBLE);
+
+                if (pageCounter > 1)
+                    previousButton.setVisibility(View.VISIBLE);
+                else previousButton.setVisibility(View.INVISIBLE);
+
+            } catch (Exception e) {
+                editText.setText(null);
+                searchResults.setText(null);
+                nextButton.setVisibility(View.INVISIBLE);
+                pageNumber.setText(null);
+                Toast.makeText(getContext(), "Please try another key word! :)", Toast.LENGTH_SHORT).show();
+                Log.i("EXCEPTION", e.getMessage());
+            }
+
             movieAdapter.notifyDataSetChanged();
             progressBar.setVisibility(View.INVISIBLE);
         });

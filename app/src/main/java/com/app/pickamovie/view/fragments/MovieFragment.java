@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.app.pickamovie.R;
+import com.app.pickamovie.UpdateButtonListener;
 import com.app.pickamovie.model.Movie;
 import com.app.pickamovie.viewModel.MovieViewModel;
 import com.bumptech.glide.Glide;
@@ -28,12 +29,14 @@ import com.google.android.material.snackbar.Snackbar;
  * Use the {@link MovieFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MovieFragment extends Fragment {
+public class MovieFragment extends Fragment implements UpdateButtonListener {
 
     MovieViewModel movieViewModel;
     boolean flag = true; // true if first icon is visible, false if second one is visible.
 
     FloatingActionButton fab;
+    public static UpdateButtonListener updateButton;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,6 +84,7 @@ public class MovieFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
+        updateButton = this;
 
         ImageView movieIcon = rootView.findViewById(R.id.movieIcon);
         TextView movieTitle = rootView.findViewById(R.id.movieTitle);
@@ -136,7 +140,6 @@ public class MovieFragment extends Fragment {
 
             fab = rootView.findViewById(R.id.fab);
             fab.setOnClickListener(view -> {
-
                 if (flag) {
                     fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.heart_black));
                     Snackbar.make(view, "The movie has been added to your favorites!", Snackbar.LENGTH_LONG)
@@ -153,5 +156,13 @@ public class MovieFragment extends Fragment {
             });
         }
         return rootView;
+    }
+
+    @Override
+    public void onUpdate(boolean status) {
+        if (status) {
+            fab.setVisibility(View.INVISIBLE);
+            fab.setEnabled(false);
+        }
     }
 }

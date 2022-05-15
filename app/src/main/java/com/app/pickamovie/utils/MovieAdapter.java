@@ -22,8 +22,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     private OnClickListener listener;
     Context context;
 
-    public MovieAdapter(Context context, ArrayList<Movie> movies)
-    {
+    public MovieAdapter(Context context, ArrayList<Movie> movies) {
         this.context = context;
         this.movies = movies;
     }
@@ -45,13 +44,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.title.setText(movies.get(position).getTitle());
 
         // changing color to every second item on the list
-        if (position % 2 == 1)
-        {
-            int color = holder.itemView.getResources().getColor(R.color.light_blue);
-            holder.title.setBackgroundColor(color);
+        int color;
+        if (position % 2 == 0) {
+            color = holder.itemView.getResources().getColor(R.color.light_blue);
+        } else {
+            color = holder.itemView.getResources().getColor(R.color.light_orange);
         }
+        holder.title.setBackgroundColor(color);
 
-            // GLIDE
+        // GLIDE
         if (movies.get(position).getPoster() != null) {
             String imageUrl = movies.get(position).getPoster();
             Glide.with(context)
@@ -59,10 +60,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .placeholder(R.drawable.no_image)
                     .into(holder.poster);
         } else {
-            // make sure Glide doesn't load anything into this view until told otherwise
             Glide.with(context).clear(holder.poster);
-            // remove the placeholder (optional);
-            //holder.poster.setImageDrawable(null);
         }
     }
 
@@ -71,13 +69,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView title;
         private final ImageView poster;
 
-        ViewHolder(View itemView)
-        {
+        ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             poster = itemView.findViewById(R.id.poster);

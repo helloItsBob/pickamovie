@@ -22,33 +22,84 @@
 
     <EditText
         android:id="@+id/movieSearchText"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
         android:hint="@string/type_the_title_of_the_movie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/resultsFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxSeries" />
+
+    <TextView
+        android:id="@+id/pageNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultsFound" />
+
+    <ImageButton
+        android:id="@+id/nextPageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/ic_baseline_navigate_next_24"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonFind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonFind"
+        app:layout_constraintTop_toTopOf="@+id/buttonFind" />
+
+    <ImageButton
+        android:id="@+id/previousPageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/ic_baseline_navigate_before_24"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonFind"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFind"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonFind" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearch"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieSearchText" />
+        app:layout_constraintTop_toBottomOf="@+id/pageNumber" />
 
     <Button
         android:id="@+id/buttonFind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:background="@drawable/custom_button"
         android:text="@string/find"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewSearch" />
@@ -62,5 +113,25 @@
         app:layout_constraintEnd_toEndOf="@+id/recyclerViewSearch"
         app:layout_constraintStart_toStartOf="@+id/recyclerViewSearch"
         app:layout_constraintTop_toTopOf="@+id/recyclerViewSearch" />
+
+    <CheckBox
+        android:id="@+id/checkBoxMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/movie"
+        app:layout_constraintEnd_toStartOf="@+id/checkBoxSeries"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieSearchText" />
+
+    <CheckBox
+        android:id="@+id/checkBoxSeries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/series"
+        app:layout_constraintBottom_toBottomOf="@+id/checkBoxMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxMovie" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
