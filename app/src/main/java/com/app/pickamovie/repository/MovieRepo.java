@@ -14,8 +14,10 @@ import com.app.pickamovie.remoteDataSource.MovieResponse;
 import com.app.pickamovie.remoteDataSource.ServiceGenerator;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +49,17 @@ public class MovieRepo {
 
     public LiveData<Movie> getSearchedMovie() {
         return searchedMovie;
+    }
+
+    public boolean isFavourite(String movieId) {
+        final Future<Boolean> existsAsync = executorService.submit(()->movieDao.exists(movieId));
+        boolean exists = false;
+        try {
+            exists = existsAsync.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return exists;
     }
 
     public LiveData<List<Movie>> getAllMovies() {

@@ -44,4 +44,8 @@ public class MovieViewModel extends AndroidViewModel {
             repository.searchForMovieRandomId();
         }
     }
+
+    public boolean getFavorite(String movieId) {
+        return repository.isFavourite(movieId);
+    }
 }

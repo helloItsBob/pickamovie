@@ -111,6 +111,7 @@ public class FavoritesFragment extends Fragment {
         movieAdapter.setOnClickListener(movie -> {
             Toast.makeText(getActivity(), movie.getTitle(), Toast.LENGTH_SHORT).show();
 
+            movie.setFavorite(movieViewModel.getFavorite(movie.getId()));
             Bundle bundle = new Bundle();
             bundle.putParcelable("movieInfo", movie);  // Key, value
             NavHostFragment.findNavController(this).navigate(R.id.movie, bundle);

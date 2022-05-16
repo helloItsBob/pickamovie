@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,7 +33,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MovieFragment extends Fragment implements UpdateButtonListener {
 
     MovieViewModel movieViewModel;
-    boolean flag = true; // true if first icon is visible, false if second one is visible.
+    boolean flag; // true if first icon is visible, false if second one is visible.
 
     FloatingActionButton fab;
     public static UpdateButtonListener updateButton;
@@ -138,20 +139,29 @@ public class MovieFragment extends Fragment implements UpdateButtonListener {
                 Log.i("EXCEPTION", e.getMessage() + "\nSearched movies don't have plot!");
             }
 
+            flag = receivedMovie.isFavorite();
+            System.out.println(flag);
+
             fab = rootView.findViewById(R.id.fab);
+            if (flag) {
+                fab.setImageDrawable(ActivityCompat.getDrawable(requireContext(), R.drawable.heart_black));
+            } else
+                fab.setImageDrawable(ActivityCompat.getDrawable(requireContext(), R.drawable.heart));
+
+
             fab.setOnClickListener(view -> {
-                if (flag) {
+                if (!flag) {
                     fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.heart_black));
                     Snackbar.make(view, "The movie has been added to your favorites!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     movieViewModel.insert(receivedMovie);
-                    flag = false;
+                    flag = true;
                 } else {
                     fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.heart));
                     Snackbar.make(view, "The movie has been removed from your favorites!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     movieViewModel.delete(receivedMovie);
-                    flag = true;
+                    flag = false;
                 }
             });
         }

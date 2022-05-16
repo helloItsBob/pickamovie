@@ -24,6 +24,7 @@ import com.app.pickamovie.R;
 import com.app.pickamovie.model.Movie;
 import com.app.pickamovie.model.MovieType;
 import com.app.pickamovie.utils.MovieAdapter;
+import com.app.pickamovie.viewModel.MovieViewModel;
 import com.app.pickamovie.viewModel.SearchViewModel;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment {
 
     private SearchViewModel searchViewModel;
+    private MovieViewModel movieViewModel;
     int pageCounter = 1; // default value
     int totalPages = 0;
 
@@ -157,6 +159,8 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
+
         searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         searchViewModel.getMoviesBySearch().observe(getViewLifecycleOwner(), search -> {
             try {
@@ -202,6 +206,7 @@ public class SearchFragment extends Fragment {
         movieAdapter.setOnClickListener(movie -> {
             Toast.makeText(getActivity(), movie.getTitle(), Toast.LENGTH_SHORT).show();
 
+            movie.setFavorite(movieViewModel.getFavorite(movie.getId()));
             Bundle bundle = new Bundle();
             bundle.putParcelable("movieInfo", movie);  // Key, value
             NavHostFragment.findNavController(this).navigate(R.id.movie, bundle);

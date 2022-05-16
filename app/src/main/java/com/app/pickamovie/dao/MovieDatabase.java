@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.app.pickamovie.model.Movie;
 
-@Database(entities = {Movie.class}, version = 1)
+@Database(entities = {Movie.class}, version = 2)
 public abstract class MovieDatabase extends RoomDatabase {
 
     private static MovieDatabase instance;
