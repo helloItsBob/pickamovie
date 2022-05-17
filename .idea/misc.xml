@@ -9,6 +9,8 @@
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/drawable-v24/ic_baseline_settings_24.xml" value="0.2475" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/drawable-v24/ic_drawer.xml" value="0.2475" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/drawable/custom_button.xml" value="0.238" />
+        <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/drawable/popup_bg.xml" value="0.195" />
+        <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout-v31/popup_window.xml" value="0.3625" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/fragment_about.xml" value="0.33248081841432225" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/fragment_favorites.xml" value="0.29379485014774165" />
@@ -17,10 +19,11 @@
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/fragment_movie.xml" value="0.33" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/fragment_profile.xml" value="0.3625" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/fragment_search.xml" value="0.3625" />
-        <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/fragment_settings.xml" value="0.1259259259259259" />
+        <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/login_activity.xml" value="0.3625" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/movie_list_item.xml" value="0.3625" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/navigation_drawer_header.xml" value="0.3625" />
+        <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/layout/popup_window.xml" value="0.29379485014774165" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/menu-v26/main_menu.xml" value="0.14537037037037037" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/menu/main_menu.xml" value="0.3625" />
         <entry key="..\:/Users/slip1/AndroidStudioProjects/pickamovie/app/src/main/res/menu/navigation_drawer.xml" value="0.3625" />

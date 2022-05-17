@@ -8,11 +8,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="96dp"
         android:contentDescription="@string/app_icon"
-        android:src="@drawable/movie_beginning"
+        android:src="@drawable/movie_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

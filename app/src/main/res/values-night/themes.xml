@@ -2,7 +2,25 @@
     <!-- Base application theme. -->
     <style name="Theme.Pickamovie" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/light_blue</item>
+        <item name="colorSecondary">@color/mid_blue</item>
+        <item name="colorSecondaryVariant">@color/dark_blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorPrimary">@color/light_orange</item>
+        <item name="colorPrimaryVariant">@color/mid_orange</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    
+    <style name="CustomStyle">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="DarkTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" >
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/mid_blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -13,4 +31,5 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
 </resources>

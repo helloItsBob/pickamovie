@@ -33,6 +33,12 @@
             tools:ignore="LockedOrientationActivity">
         </activity>
 
+        <activity
+            android:name=".view.PopUp"
+            android:theme="@style/CustomStyle">
+        </activity>
+
+
     </application>
 
 </manifest>

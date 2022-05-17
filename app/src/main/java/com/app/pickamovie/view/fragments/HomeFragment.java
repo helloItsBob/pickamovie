@@ -1,6 +1,7 @@
 package com.app.pickamovie.view.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -34,10 +38,22 @@ import java.util.Set;
  */
 public class HomeFragment extends Fragment {
 
-    private MovieViewModel movieViewModel;
-    private int times;
+    private ProgressBar progressBar;
+    private Button getButton;
 
-    private Set<Movie> set = new HashSet<>();
+    private MovieViewModel movieViewModel;
+    private int times; // storing spinner value
+
+    private RecyclerView movieListRecycler;
+    private ArrayList<Movie> movies;
+    private MovieAdapter movieAdapter;
+    private final Set<Movie> set = new HashSet<>();
+
+    // for night mode
+    int NightMode;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,6 +102,29 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // night mode
+        sharedPreferences = getActivity().getSharedPreferences("SharedPrefs", getContext().MODE_PRIVATE);
+        NightMode = sharedPreferences.getInt("NightModeInt", 1);
+        AppCompatDelegate.setDefaultNightMode(NightMode);
+
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchTheme = rootView.findViewById(R.id.switchTheme);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            getActivity().setTheme(R.style.DarkTheme); //when dark mode is enabled, we use the dark theme
+            switchTheme.setChecked(true);
+        } else {
+            getActivity().setTheme(R.style.Theme_Pickamovie);  //default app theme
+            switchTheme.setChecked(false);
+        }
+
+        switchTheme.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        });
+
         // spinner from resource file
         Spinner spinner = rootView.findViewById(R.id.number_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.numbers_array, android.R.layout.simple_spinner_item);
@@ -103,18 +142,18 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ProgressBar progressBar = rootView.findViewById(R.id.progressBar);
+        progressBar = rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
-        Button getButton = rootView.findViewById(R.id.getMovies);
+        getButton = rootView.findViewById(R.id.getMovies);
 
-        RecyclerView movieList = rootView.findViewById(R.id.recyclerView);
-        movieList.hasFixedSize();
-        movieList.setLayoutManager(new LinearLayoutManager(getContext()));
+        movieListRecycler = rootView.findViewById(R.id.recyclerView);
+        movieListRecycler.hasFixedSize();
+        movieListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ArrayList<Movie> movies = new ArrayList<>();
-        MovieAdapter movieAdapter = new MovieAdapter(getActivity(), movies);
-        movieList.setAdapter(movieAdapter);
+        movies = new ArrayList<>();
+        movieAdapter = new MovieAdapter(getActivity(), movies);
+        movieListRecycler.setAdapter(movieAdapter);
 
         getButton.setOnClickListener(view -> {
             set.clear();
@@ -144,5 +183,17 @@ public class HomeFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        NightMode = AppCompatDelegate.getDefaultNightMode();
+
+        sharedPreferences = requireActivity().getSharedPreferences("SharedPrefs", getContext().MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putInt("NightModeInt", NightMode);
+        editor.apply();
     }
 }

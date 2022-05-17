@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pick-a-Movie</string>
+    <string name="email">E-pasts</string>
+    <string name="password">Parole</string>
+    <string name="login">Ieiet</string>
+    <string name="register">Reģistrēties</string>
+    <string name="greeting_tryYourLuck">Izmēģini veiksmi!</string>
+    <string name="about_app">Nebojā savu randiņu vakaru, izmanto PickaMovie! Vai Tev kādreiz ir bijušas problēmas, kad vēlējies noskatīties kādu neparastu filmu, bet nevarēji to atrast, un tā vietā veltīji visu savu laiku un enerģiju, ritinot bezgalīgo sarakstu, ko atradi tiešsaistē, ierakstot kaut ko līdzīgu kā “Visu laiku labākās filmas”? Man ir, un tā nav jautra pieredze. Tāpēc es piedāvāju Tev filmu atlasītāja lietotni ar nosaukumu “PickaMovie”, kas novērsīs visas rūpes, kas saistītas ar filmas atrašanas procesu, un palīdzēs izvēlēties filmu, kuru esi pelnījis! Ja Tev kādreiz ir grūtības atrast filmas, kuras vēlies redzēt, vienkārši atver lietotni, ievadi filtrēšanas kritērijus un bāaam! - Tu esi ieguvis sašaurinātu sarakstu, ņemot vērā tavas vēlmes. Tas ietaupa Tavu laiku un nodrošina jauku vakaru!</string>
+    <string name="search">Meklēt</string>
+    <string name="favorites">Favorīti</string>
+    <string name="settings">Iestatījumi</string>
+    <string name="about">Par Mums</string>
+    <string name="log_out">Iziet</string>
+    <string name="movie_title_placeholder">Filmas nosaukums</string>
+    <string name="movie_poster">Filmas plakāts</string>
+    <string name="sign_in">Pieslēgties</string>
+    <string name="placeholder">Diemžēl šai filmai vēl nav pievienots apraksts. Mēs pie tā strādājam!</string>
+    <string name="get_random_movies">Random  filmas</string>
+    <string name="type_the_title_of_the_movie">Ieraksti filmas nosaukumu…</string>
+    <string name="find">Atrast filmu</string>
+    <string name="welcome_to_pick_a_movie">Laipni lūdzam Pick-a-Movie!</string>
+    <string name="year">Gads:</string>
+    <string name="rating">Vērtējums:</string>
+    <string name="save_to_favorites">Saglabāt izlasē</string>
+    <string name="delete_all">Dzēst visu</string>
+    <string name="movie">Filma</string>
+    <string name="series">Seriāls</string>
+    <string name="are_you_sure_you_want_to_quit">Vai tiešām vēlies iziet?</string>
+    <string name="yes">Jā</string>
+    <string name="no">Nē</string>
+    <string name="welcome_message">Laipni lūdzam, </string>
+    <string name="Rating">Vērtējums:</string>
+</resources>

@@ -14,7 +14,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/no_image"
+        android:src="@drawable/no_image_icon_"
         app:layout_constraintBottom_toTopOf="@+id/movieTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,18 +55,28 @@
 
     <TextView
         android:id="@+id/movieRating"
-        android:layout_width="match_parent"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
         android:gravity="right"
         android:text="@string/rating"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieYear"
         tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/actualRating"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/movieRating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/movieRating"
+        app:layout_constraintTop_toTopOf="@+id/movieRating" />
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -102,7 +112,8 @@
         app:layout_constraintEnd_toStartOf="@+id/imageShareButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieRating" />
+        app:layout_constraintTop_toBottomOf="@+id/movieRating"
+        app:tint="@color/black" />
 
     <ImageButton
         android:id="@+id/imageShareButton"
@@ -113,7 +124,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/imagePlayButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imagePlayButton" />
+        app:layout_constraintStart_toEndOf="@+id/imagePlayButton"
+        app:tint="@color/black" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

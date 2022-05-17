@@ -29,7 +29,14 @@ import java.util.ArrayList;
  */
 public class FavoritesFragment extends Fragment {
 
-    MovieViewModel movieViewModel;
+    private Button deleteAllButton;
+    private ProgressBar progressBar;
+
+    private RecyclerView movieRecyclerList;
+    private ArrayList<Movie> moviesList;
+    private MovieAdapter movieAdapter;
+
+    private MovieViewModel movieViewModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,23 +85,16 @@ public class FavoritesFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
 
-//        Button test = rootView.findViewById(R.id.testButton);
-//        test.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                MovieFragment.updateButton.onUpdate(true);
-//            }
-//        });
-        Button deleteAllButton = rootView.findViewById(R.id.deleteAllButton);
-        ProgressBar progressBar = rootView.findViewById(R.id.progressBarFavorites);
+        deleteAllButton = rootView.findViewById(R.id.deleteAllButton);
+        progressBar = rootView.findViewById(R.id.progressBarFavorites);
         progressBar.setVisibility(View.INVISIBLE);
 
-        RecyclerView movieRecyclerList = rootView.findViewById(R.id.recyclerViewFavorites);
+        movieRecyclerList = rootView.findViewById(R.id.recyclerViewFavorites);
         movieRecyclerList.hasFixedSize();
         movieRecyclerList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ArrayList<Movie> moviesList = new ArrayList<>();
-        MovieAdapter movieAdapter = new MovieAdapter(getActivity(), moviesList);
+        moviesList = new ArrayList<>();
+        movieAdapter = new MovieAdapter(getActivity(), moviesList);
         movieRecyclerList.setAdapter(movieAdapter);
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
@@ -102,8 +102,6 @@ public class FavoritesFragment extends Fragment {
             moviesList.clear();
             if (!movies.isEmpty()) {
                 moviesList.addAll(movies);
-            } else {
-                Toast.makeText(getContext(), "Your favorites list is empty!", Toast.LENGTH_SHORT).show();
             }
             movieAdapter.notifyDataSetChanged();
         });

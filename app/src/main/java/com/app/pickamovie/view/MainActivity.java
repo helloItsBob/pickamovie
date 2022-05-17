@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
         setupNavigation();
 
         welcomeMessage = findViewById(R.id.textView);
+
+        // logout
+        savedInstanceState = getIntent().getExtras();
+        if (savedInstanceState != null && savedInstanceState.containsKey(PopUp.KEY)) {
+            String data = savedInstanceState.getString(PopUp.KEY);
+            if (data.equals("signOut")) {
+                signOut();
+            }
+        }
     }
 
     private void initViews() {
@@ -66,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         // log out from drawer
         navigationDrawer.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(menuItem -> {
-            signOut();
+            startActivity(new Intent(MainActivity.this, PopUp.class));
             return true;
         });
     }
@@ -75,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         mainActivityViewModel.getCurrentUser().observe(this, user -> {
             if (user != null) {
                 try {
-                    String message = "Welcome " + user.getDisplayName() + "!";
+                    String message = getString(R.string.welcome_message) + " " + user.getDisplayName() + "!";
                     welcomeMessage.setText(message);
                 } catch (Exception e) {
                     Log.i("EXCEPTION", e.getMessage());
@@ -112,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.logout) {
-            Toast.makeText(this, "See you soon!", Toast.LENGTH_SHORT).show();
-            signOut();
+            startActivity(new Intent(MainActivity.this, PopUp.class));
         }
 
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);

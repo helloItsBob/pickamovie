@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.app.pickamovie.R;
-import com.app.pickamovie.UpdateButtonListener;
 import com.app.pickamovie.model.Movie;
 import com.app.pickamovie.viewModel.MovieViewModel;
 import com.bumptech.glide.Glide;
@@ -30,14 +29,21 @@ import com.google.android.material.snackbar.Snackbar;
  * Use the {@link MovieFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MovieFragment extends Fragment implements UpdateButtonListener {
+public class MovieFragment extends Fragment {
 
-    MovieViewModel movieViewModel;
-    boolean flag; // true if first icon is visible, false if second one is visible.
+    private ImageView movieIcon;
+    private TextView movieTitle;
+    private TextView movieYear;
+    private TextView movieRating;
+    private TextView moviePlot;
 
-    FloatingActionButton fab;
-    public static UpdateButtonListener updateButton;
+    private ImageButton imagePlayButton;
+    private ImageButton imageShareButton;
 
+    private MovieViewModel movieViewModel;
+    private boolean flag; // for favorites button
+
+    private FloatingActionButton fab;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,16 +91,15 @@ public class MovieFragment extends Fragment implements UpdateButtonListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
-        updateButton = this;
 
-        ImageView movieIcon = rootView.findViewById(R.id.movieIcon);
-        TextView movieTitle = rootView.findViewById(R.id.movieTitle);
-        TextView movieYear = rootView.findViewById(R.id.actualYear);
-        TextView movieRating = rootView.findViewById(R.id.movieRating);
-        TextView moviePlot = rootView.findViewById(R.id.movieDescription);
+        movieIcon = rootView.findViewById(R.id.movieIcon);
+        movieTitle = rootView.findViewById(R.id.movieTitle);
+        movieYear = rootView.findViewById(R.id.actualYear);
+        movieRating = rootView.findViewById(R.id.actualRating);
+        moviePlot = rootView.findViewById(R.id.movieDescription);
 
-        ImageButton imagePlayButton = rootView.findViewById(R.id.imagePlayButton);
-        ImageButton imageShareButton = rootView.findViewById(R.id.imageShareButton);
+        imagePlayButton = rootView.findViewById(R.id.imagePlayButton);
+        imageShareButton = rootView.findViewById(R.id.imageShareButton);
 
         imagePlayButton.setOnClickListener(view -> {
             String action = Intent.ACTION_VIEW;
@@ -120,7 +125,7 @@ public class MovieFragment extends Fragment implements UpdateButtonListener {
             Movie receivedMovie = bundle.getParcelable("movieInfo"); // Key
 
             if (receivedMovie.getPoster().equals("N/A")) {
-                Glide.with(this).load(R.drawable.no_image).into(movieIcon);
+                Glide.with(this).load(R.drawable.no_image_icon_).into(movieIcon);
             } else Glide.with(this).load(receivedMovie.getPoster()).into(movieIcon);
 
             movieTitle.setText(receivedMovie.getTitle());
@@ -128,7 +133,7 @@ public class MovieFragment extends Fragment implements UpdateButtonListener {
             movieYear.setText(receivedMovie.getYear());
 
             if (receivedMovie.getImdbRating() != null) {
-                movieRating.setText("Rating: " + receivedMovie.getImdbRating());
+                movieRating.setText(receivedMovie.getImdbRating());
             } else movieRating.setText("N/A");
 
             try {
@@ -166,13 +171,5 @@ public class MovieFragment extends Fragment implements UpdateButtonListener {
             });
         }
         return rootView;
-    }
-
-    @Override
-    public void onUpdate(boolean status) {
-        if (status) {
-            fab.setVisibility(View.INVISIBLE);
-            fab.setEnabled(false);
-        }
     }
 }

@@ -9,14 +9,10 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/favorites"
-        android:icon="@drawable/heart_white"
+        android:icon="@drawable/ic_baseline_favorite_24"
         android:iconTint="@color/light_orange"
         android:title="@string/favorites"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/settings"
-        android:iconTint="@color/light_orange"
-        android:title="@string/settings" />
     <item
         android:id="@+id/about"
         android:iconTint="@color/light_orange"

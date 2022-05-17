@@ -57,7 +57,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             String imageUrl = movies.get(position).getPoster();
             Glide.with(context)
                     .load(imageUrl)
-                    .placeholder(R.drawable.no_image)
+                    .placeholder(R.drawable.no_image_icon_)
                     .into(holder.poster);
         } else {
             Glide.with(context).clear(holder.poster);

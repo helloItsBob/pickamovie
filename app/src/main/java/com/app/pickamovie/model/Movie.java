@@ -29,38 +29,10 @@ public class Movie implements Parcelable {
     private String imdbRating;
 
     private boolean isFavorite;
-//    private final String rated;
-//    private final String released;
-//    private final String runtime;
-//    private final String genre;
-//    private final String Director;
-//    private final String Writer;
-//    private final String Actors;
-//    private final String Plot;
-//    private final String Language;
-//    private final String Country;
-//    private final String Awards;
-//    private final String Poster;
-//    private final ArrayList<Rating> Ratings;
-//    private final String Metascore;
-//    private final String imdbVotes;
-//    private final String imdbID;
-//    private final String Type;
-//    private final String DVD;
-//    private final String BoxOffice;
-//    private final String Production;
-//    private final String Website;
-//    private final String Response;
-
-//, String director, String writer, String actors, String plot,
-//    String language, String country, String awards, String poster,
-//    ArrayList<Rating> ratings, String metascore, String imdbRating, String imdbVotes,
-//    String imdbID, String type, String DVD, String boxOffice, String production,
-//    String website, String response
 
     // constructor for get methods
-    public Movie(@NonNull String id, String title, String year,//, String rated, String released, String runtime,String genre
-                 String response, String poster, String type, String plot, String imdbRating) {
+    public Movie(@NonNull String id, String title, String year, String response, String poster,
+                 String type, String plot, String imdbRating) {
         this.id = id;
         this.title = title;
         this.year = year;
@@ -70,29 +42,6 @@ public class Movie implements Parcelable {
         this.plot = plot;
         this.imdbRating = imdbRating;
         this.isFavorite = false;
-
-//        this.rated = rated;
-//        this.released = released;
-//        this.runtime = runtime;
-//        this.genre = genre;
-//        this.Director = director;
-//        this.Writer = writer;
-//        this.Actors = actors;
-//        this.Plot = plot;
-//        this.Language = language;
-//        this.Country = country;
-//        this.Awards = awards;
-//        this.Ratings = ratings;
-//        this.Metascore = metascore;
-//        this.imdbRating = imdbRating;
-//        this.imdbVotes = imdbVotes;
-//        this.imdbID = imdbID;
-//        this.Type = type;
-//        this.DVD = DVD;
-//        this.BoxOffice = boxOffice;
-//        this.Production = production;
-//        this.Website = website;
-//        this.Response = response;
     }
 
     // constructor for search
@@ -105,6 +54,7 @@ public class Movie implements Parcelable {
         this.poster = poster;
     }
 
+    // to transfer bundle
     protected Movie(Parcel in) {
         id = in.readString();
         title = in.readString();
@@ -168,96 +118,6 @@ public class Movie implements Parcelable {
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
     }
-
-    //    public String getRated() {
-//        return rated;
-//    }
-//
-//    public String getReleased() {
-//        return released;
-//    }
-//
-//    public String getRuntime() {
-//        return runtime;
-//    }
-//
-//    public String getGenre() {
-//        return genre;
-//    }
-
-//    public String getDirector() {
-//        return Director;
-//    }
-//
-//    public String getWriter() {
-//        return Writer;
-//    }
-//
-//    public String getActors() {
-//        return Actors;
-//    }
-//
-//    public String getPlot() {
-//        return Plot;
-//    }
-//
-//    public String getLanguage() {
-//        return Language;
-//    }
-//
-//    public String getCountry() {
-//        return Country;
-//    }
-//
-//    public String getAwards() {
-//        return Awards;
-//    }
-//
-//    public String getPoster() {
-//        return Poster;
-//    }
-//
-//    public ArrayList<Rating> getRatings() {
-//        return Ratings;
-//    }
-//
-//    public String getMetascore() {
-//        return Metascore;
-//    }
-//
-//
-//    public String getImdbVotes() {
-//        return imdbVotes;
-//    }
-//
-//    public String getImdbID() {
-//        return imdbID;
-//    }
-//
-//    public String getType() {
-//        return Type;
-//    }
-//
-//    public String getDVD() {
-//        return DVD;
-//    }
-//
-//    public String getBoxOffice() {
-//        return BoxOffice;
-//    }
-//
-//    public String getProduction() {
-//        return Production;
-//    }
-//
-//    public String getWebsite() {
-//        return Website;
-//    }
-//
-//    public String getResponse() {
-//        return Response;
-//    }
-
 
     @Override
     public String toString() {

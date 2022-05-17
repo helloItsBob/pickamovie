@@ -33,6 +33,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+    <ImageButton
+        android:id="@+id/clearTextButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/ic_baseline_close_24"
+        app:layout_constraintBottom_toBottomOf="@+id/movieSearchText"
+        app:layout_constraintEnd_toEndOf="@+id/movieSearchText"
+        app:layout_constraintTop_toTopOf="@+id/movieSearchText" />
+
     <TextView
         android:id="@+id/resultsFound"
         android:layout_width="match_parent"
