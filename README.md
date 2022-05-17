@@ -21,3 +21,5 @@ yourself a narrowed list with your preferences taken into account. This saves yo
 | 10. | As a user I want to be able to choose between a light theme and dark theme, so I can ease the strain on my eyes depending on my phone setup or the time of the day the app is being used. | ✓ |
 
 Note: Due to limitations of my chosen API some of the requirements could not be implemented. Lesson learned, next time I will choose API before starting the project :)
+
+Youtube link: https://youtu.be/B3J7R5tbG7k
